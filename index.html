@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Love Album</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #1a1a1a, #2b2b2b, #ff5f8f22);
+      overflow-x: hidden;
+      position: relative;
+      background-size: 300% 300%;
+      animation: bgMove 18s ease infinite;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    #1a1a1a,
+    #2b2b2b,
+    #ff5f8f22
+  );
+  background-size: 300% 300%;
+  animation: bgMove 18s ease infinite;
+  z-index: -2;
+}
+
+
+    header {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      background: radial-gradient(circle at top, #ff5f8f33, transparent 60%);
+      animation: fadeIn 2s ease;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+
+    section.gallery {
+      padding: 80px 8%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      cursor: pointer;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      transform: translateY(40px);
+      opacity: 0;
+      transition: all 0.8s ease;
+    }
+
+    .photo-card.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .photo-card:hover .caption {
+      opacity: 1;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+      to { opacity: 1; transform: translateY(0); }
+    
+      .music-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: rgba(255,95,143,0.9);
+      border: none;
+      color: #fff;
+      padding: 14px 18px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      z-index: 1000;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      z-index: 999;
+    }
+
+    .lightbox.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox img {
+      max-width: 85%;
+      max-height: 85%;
+      border-radius: 18px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      animation: fadeIn 0.6s ease;
+    }
+
+    canvas#hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+      .cinematic {
+      opacity: 0;
+      transform: scale(0.94) translateY(40px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+    }
+
+    .cinematic.show {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+  </style>
+</head>
+<body>
+  <canvas id="hearts"></canvas>
+  <audio id="bgm" src="c:\Users\Hype\Downloads\The 1975 - About You (Official).mp3" loop></audio>
+  <button class="music-btn" id="musicBtn">🔇 Music</button>
+
+  <header>
+    <div>
+      <h1>Our Love Story</h1>
+      <h1>❤</h1>
+      <p>A small album about our beautiful moments together.</p>
+    </div>
+  </header>
+
+      <section class="video-section cinematic" style="padding:80px 8%; text-align:center;">
+    <h2 style="font-family:'Playfair Display',serif; font-size:2.2rem; margin-bottom:20px;">Our Special Moment</h2>
+    <p style="opacity:0.8; margin-bottom:40px;">A little snippet of memories that I always keep.</p>
+    <div style="max-width:800px; margin:0 auto; border-radius:22px; overflow:hidden; box-shadow:0 25px 50px rgba(0,0,0,0.5);">
+      <video controls autoplay muted loop style="width:100%; height:auto; display:block;">
+        <source src="https://res.cloudinary.com/dhxw63xxj/video/upload/v1769077834/Video_1_ihd7uo.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="photo-card">
+      <img src="https://thumbs2.imgbox.com/08/d3/DOjvqWGb_t.jpeg" alt="Moment 1">
+      <div class="caption">Behind the glass, there is our story and the city that is the witness.</div>
+    </div>
+    <div class="photo-card">
+      <img src="https://thumbs2.imgbox.com/c0/6c/08dlPxpa_t.jpeg" alt="Moment 2">
+      <div class="caption">Simple moment, big smile.</div>
+    </div>
+    <div class="photo-card">
+      <img src="https://thumbs2.imgbox.com/15/5c/U3JvWCoe_t.jpeg" alt="Moment 3">
+      <div class="caption">Just us and the city view.</div>
+    </div>
+    <div class="photo-card">
+      <img src="https://thumbs2.imgbox.com/f4/c1/boqfjGqr_t.jpeg" alt="Moment 4">
+      <div class="caption"></div>
+    </div>
+  </section>
+
+    <div class="lightbox" id="lightbox">
+    <img id="lightboxImg" src="" alt="preview" />
+  </div>
+
+  <footer>
+    © 2026 Our Album · Made with ❤
+  </footer>
+
+    <script>
+    // Scroll animation
+
+    const cards = document.querySelectorAll('.photo-card');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+        cards.forEach(card => observer.observe(card));
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const img = card.querySelector('img');
+        lightboxImg.src = img.src;
+        lightbox.classList.add('show');
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('show');
+    });
+
+    // Music control
+    const bgm = document.getElementById('bgm');
+    const musicBtn = document.getElementById('musicBtn');
+    let playing = true;
+
+    musicBtn.onclick = () => {
+      if (playing) {
+        bgm.pause();
+        musicBtn.textContent = '🔇 Music';
+      } else {
+        bgm.play();
+        musicBtn.textContent = '🔊 Music';
+      }
+      playing = !playing;
+    };
+
+    // Heart particles
+    const canvas = document.getElementById('hearts');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const hearts = Array.from({ length: 30 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      size: Math.random() * 6 + 4,
+      speed: Math.random() * 0.5 + 0.2,
+      alpha: Math.random() * 0.5 + 0.3
+    }));
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      hearts.forEach(hd => {
+        ctx.globalAlpha = hd.alpha;
+        ctx.fillStyle = '#ff5f8f';
+        ctx.beginPath();
+        ctx.arc(hd.x, hd.y, hd.size, 0, Math.PI * 2);
+        ctx.fill();
+        hd.y -= hd.speed;
+        if (hd.y < -10) hd.y = h + 10;
+      });
+      requestAnimationFrame(draw);
+    }
+        draw();
+
+    // Cinematic video reveal
+    const videoSection = document.querySelector('.cinematic');
+
+    const videoObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.4 });
+
+    videoObserver.observe(videoSection);
+  </script>
+
+</body>
+</html>
